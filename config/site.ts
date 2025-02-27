@@ -10,6 +10,10 @@ export const siteConfig = {
   },
   nav: [
     {
+      title: "Home",
+      href: "/",
+    },
+    {
       title: "About",
       href: "/about",
     },
