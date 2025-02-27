@@ -69,7 +69,52 @@ export default function NavBar() {
 
       {/* Mobile Nav */}
       <div className="md:hidden">
-        ...drawer goes here.
+        <Drawer open={isOpen} onOpenChange={setIsOpen} direction="top">
+          <DrawerTrigger asChild>
+            <Button variant="ghost" size="icon" aria-label="Open menu">
+              <Menu className="h-6 w-6" />
+            </Button>
+          </DrawerTrigger>
+          <DrawerContent>
+            <DrawerHeader>
+              <DrawerTitle className="flex items-center justify-between">
+                <span>TEDxUIUC Menu</span>
+                <DrawerClose asChild>
+                  <Button variant="ghost" size="icon">
+                    <X className="h-5 w-5" />
+                    <span className="sr-only">Close menu</span>
+                  </Button>
+                </DrawerClose>
+              </DrawerTitle>
+              <DrawerDescription>
+                Navigate through our pages
+              </DrawerDescription>
+            </DrawerHeader>
+
+            <div className="grid gap-3 px-4">
+              {siteConfig.nav.map((item) => (
+                <DrawerClose key={item.href} asChild className={cn("hover:text-[#c90425]", pathname === item.href && "text-[#e70328] hover:text-[#c90425]")}>
+                  <Link href={item.href}>{item.title}</Link>
+                </DrawerClose>
+              ))}
+            </div>
+
+            <div className="space-x-4">
+              <DrawerFooter>
+                <DrawerClose asChild>
+                  <Button variant="secondary" asChild>
+                    <Link href="/details">Details</Link>
+                  </Button>
+                </DrawerClose>
+                <DrawerClose asChild>
+                  <Button variant="outline" asChild>
+                    <Link href="/tickets">Get Tickets</Link>
+                  </Button>
+                </DrawerClose>
+              </DrawerFooter>
+            </div>
+          </DrawerContent>
+        </Drawer>
       </div>
     </div>
   )
